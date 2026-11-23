@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Небольшой секрет ✦</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #f7f1e9;
+  --paper: #fffdf9;
+  --wine: #702b3b;
+  --wine-dark: #4c1d2a;
+  --ink: #352a28;
+  --muted: #887b73;
+  --line: #e9ddd2;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Manrope', sans-serif;
+}
+.page {
+  width: min(100% - 32px, 760px);
+  margin: 0 auto;
+  padding: 28px 0 60px;
+}
+.topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--wine);
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+.topline span:last-child { color: var(--muted); }
+.hero {
+  margin-top: 28px;
+  overflow: hidden;
+  border-radius: 5px;
+  background: #e6d9cd;
+  position: relative;
+  min-height: 410px;
+}
+.hero img {
+  width: 100%;
+  height: 410px;
+  display: block;
+  object-fit: cover;
+  object-position: center 55%;
+  filter: saturate(.78);
+}
+.hero:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(43,20,23,.55), transparent 58%);
+}
+.hero-copy {
+  position: absolute;
+  z-index: 1;
+  left: 30px;
+  right: 25px;
+  bottom: 28px;
+  color: white;
+}
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+}
+h1, h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+}
+.hero h1 {
+  font-size: clamp(42px, 8vw, 66px);
+  line-height: .95;
+  margin: 12px 0;
+}
+.hero-copy p {
+  font-size: 12px;
+  line-height: 1.7;
+  max-width: 320px;
+  margin: 0;
+  color: rgba(255,255,255,.9);
+}
+.intro {
+  text-align: center;
+  padding: 36px 12px 25px;
+}
+.intro .small {
+  color: var(--wine);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+.intro h2 {
+  font-size: 36px;
+  margin: 10px 0;
+}
+.intro p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+  max-width: 430px;
+  margin: auto;
+}
+.panel {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: clamp(22px, 5vw, 42px);
+  box-shadow: 0 15px 50px rgba(76,29,42,.045);
+}
+.progress-top {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 12px;
+}
+.progress {
+  height: 3px;
+  background: #eee5dd;
+  margin-bottom: 34px;
+}
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: var(--wine);
+  transition: width .3s ease;
+}
+.question-number {
+  color: var(--wine);
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+.question-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(30px, 6vw, 39px);
+  line-height: 1.08;
+  margin: 12px 0 8px;
+}
+.question-hint {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 0 0 24px;
+}
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.option {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  min-height: 54px;
+  padding: 13px 14px;
+  text-align: left;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: .2s ease;
+}
+.option:hover {
+  border-color: var(--wine);
+  background: #fbf6f1;
+}
+.option.selected {
+  border-color: var(--wine);
+  background: #f4e9e6;
+  color: var(--wine-dark);
+}
+.other-input {
+  width: 100%;
+  margin-top: 12px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  background: transparent;
+  font: inherit;
+  font-size: 12px;
+  outline: none;
+}
+.other-input:focus { border-color: var(--wine); }
+.controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 30px;
+}
+button.nav {
+  border: 1px solid var(--wine);
+  padding: 13px 22px;
+  font: inherit;
+  font-size: 11px;
+  letter-spacing: .08em;
+  cursor: pointer;
+}
+button.primary {
+  background: var(--wine);
+  color: white;
+  margin-left: auto;
+}
+button.secondary {
+  background: transparent;
+  color: var(--wine);
+}
+button:disabled { opacity: .35; cursor: not-allowed; }
+.footnote {
+  text-align: center;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.7;
+  margin: 22px 0 0;
+}
+.result { display: none; }
+.result h2 {
+  font-size: 42px;
+  text-align: center;
+  color: var(--wine);
+  margin: 5px 0 12px;
+}
+.result p {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.answer-list {
+  margin-top: 25px;
+  border-top: 1px solid var(--line);
+}
+.answer-row {
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.answer-row strong {
+  display: block;
+  color: var(--wine);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+@media (max-width: 520px) {
+  .hero, .hero img { min-height: 350px; height: 350px; }
+  .options { grid-template-columns: 1fr; }
+  .panel { padding: 22px 18px; }
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="topline">
+    <span>A little holiday secret</span>
+    <span>December · 2026</span>
+  </div>
+
+  <section class="hero">
+    <img
+      src="https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=1600&q=85"
+      alt="Новогодний подарок с праздничным бантом"
+    >
+    <div class="hero-copy">
+      <div class="eyebrow">A special little something</div>
+      <h1>Один маленький<br>секрет...</h1>
+      <p>Хочу выбрать для тебя что-то особенное. Ответь на несколько вопросов — и пусть магия начнётся.</p>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="small">Christmas questionnaire</div>
+    <h2>Подарок для тебя</h2>
+    <p>Здесь нет неправильных ответов. Просто будь собой — а я постараюсь угадать то, что действительно тебя порадует.</p>
+  </section>
+
+  <section class="panel" id="quiz">
+    <div id="quiz-content">
+      <div class="progress-top">
+        <span id="step-label">Вопрос 1</span>
+        <span id="step-count">1 / 11</span>
+      </div>
+      <div class="progress"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="question-number" id="question-number">QUESTION 01</div>
+      <h2 class="question-title" id="question-title"></h2>
+      <p class="question-hint" id="question-hint"></p>
+      <div class="options" id="options"></div>
+      <input class="other-input" id="other-input" placeholder="Или напиши свой вариант..." style="display:none">
+      <div class="controls">
+        <button class="nav secondary" id="back" type="button">Назад</button>
+        <button class="nav primary" id="next" type="button" disabled>Далее →</button>
+      </div>
+    </div>
+
+    <div class="result" id="result">
+      <div class="question-number" style="text-align:center">THE END</div>
+      <h2>Спасибо! ♡</h2>
+      <p>Спасибо, что поделился своими предпочтениями.<br>Кажется, теперь выбрать подарок будет гораздо проще.</p>
+      <div class="answer-list" id="answer-list"></div>
+    </div>
+  </section>
+
+  <p class="footnote">Made with love · Christmas wishes 2026</p>
+</main>
+
+<script>
+const questions = [
+  {
+    title: "Какой подарок тебя по-настоящему порадует?",
+    hint: "Можно выбрать то, что ближе всего по настроению.",
+    options: ["Что-то практичное", "Что-то для души", "Впечатление или эмоции", "Неожиданный сюрприз"]
+  },
+  {
+    title: "Какой стиль тебе ближе?",
+    hint: "Выбери свой вариант.",
+    options: ["Минимализм", "Классика", "Спорт и casual", "Яркие необычные вещи"]
+  },
+  {
+    title: "Чем ты любишь заниматься в свободное время?",
+    hint: "Что приносит тебе удовольствие?",
+    options: ["Игры и технологии", "Спорт и активный отдых", "Фильмы, музыка, книги", "Путешествия и прогулки"]
+  },
+  {
+    title: "Какие цвета тебе нравятся?",
+    hint: "Можно выбрать несколько вариантов.",
+    multi: true,
+    options: ["Чёрный и серый", "Бежевый и коричневый", "Синий и зелёный", "Бордовый и другие глубокие оттенки"]
+  },
+  {
+    title: "Что из этого тебе было бы интересно получить?",
+    hint: "Выбери наиболее приятные варианты.",
+    multi: true,
+    options: ["Аксессуар", "Одежду", "Гаджет или технику", "Что-нибудь для дома"]
+  },
+  {
+    title: "Как ты относишься к подаркам-впечатлениям?",
+    hint: "Например, совместный вечер, поездка или необычное занятие.",
+    options: ["Очень люблю", "Скорее нравится", "Предпочитаю материальные подарки", "Зависит от впечатления"]
+  },
+  {
+    title: "Любишь сладкое?",
+    hint: "Немного сладкого настроения никогда не помешает.",
+    options: ["Да, очень", "Иногда", "Предпочитаю солёное", "Не люблю сладкое"]
+  },
+  {
+    title: "Пьёшь ли ты кофе?",
+    hint: "Хочу учесть даже маленькие детали.",
+    options: ["Да, каждый день", "Иногда", "Не пью кофе"]
+  },
+  {
+    title: "Какой кофе тебе нравится?",
+    hint: "Если пьёшь кофе, расскажи о своём любимом.",
+    options: ["Капучино", "Латте", "Американо", "Эспрессо", "Другой / неважно"],
+    condition: a => a[7] && a[7] !== "Не пью кофе"
+  },
+  {
+    title: "Пользуешься ли ты парфюмом?",
+    hint: "Это поможет не ошибиться с ароматом.",
+    options: ["Да, регулярно", "Иногда", "Нет, не пользуюсь"]
+  },
+  {
+    title: "Какие ароматы тебе нравятся?",
+    hint: "Выбери направление, которое тебе ближе.",
+    options: ["Свежие и цитрусовые", "Древесные и пряные", "Сладкие и тёплые", "Морские и лёгкие", "Не знаю / доверюсь выбору"],
+    condition: a => a[9] && a[9] !== "Нет, не пользуюсь"
+  }
+];
+
+let answers = {};
+let current = 0;
+let selected = [];
+
+const $ = id => document.getElementById(id);
+
+function visibleQuestions() {
+  return questions.map((q, i) => ({...q, originalIndex:i}))
+    .filter(q => !q.condition || q.condition(answers));
+}
+
+function render() {
+  const visible = visibleQuestions();
+  const q = visible[current];
+  if (!q) return finish();
+
+  selected = Array.isArray(answers[q.originalIndex])
+    ? [...answers[q.originalIndex]]
+    : answers[q.originalIndex] ? [answers[q.originalIndex]] : [];
+
+  $("step-label").textContent = `Вопрос ${current + 1}`;
+  $("step-count").textContent = `${current + 1} / ${visible.length}`;
+  $("progress-fill").style.width = `${(current / visible.length) * 100}%`;
+  $("question-number").textContent = `QUESTION ${String(current + 1).padStart(2,"0")}`;
+  $("question-title").textContent = q.title;
+  $("question-hint").textContent = q.hint;
+  $("options").innerHTML = "";
+  $("other-input").style.display = "none";
+  $("other-input").value = "";
+
+  q.options.forEach(option => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "option" + (selected.includes(option) ? " selected" : "");
+    button.textContent = option;
+    button.addEventListener("click", () => choose(option, q));
+    $("options").appendChild(button);
+  });
+
+  $("back").style.visibility = current === 0 ? "hidden" : "visible";
+  $("next").textContent = current === visible.length - 1 ? "Завершить ♡" : "Далее →";
+  $("next").disabled = selected.length === 0;
+}
+
+function choose(option, q) {
+  if (q.multi) {
+    selected = selected.includes(option)
+      ? selected.filter(x => x !== option)
+      : [...selected, option];
+  } else {
+    selected = [option];
+  }
+  answers[q.originalIndex] = q.multi ? [...selected] : selected[0];
+  renderOptionsOnly(q);
+  $("next").disabled = selected.length === 0;
+}
+
+function renderOptionsOnly(q) {
+  [...$("options").children].forEach(button => {
+    button.classList.toggle("selected", selected.includes(button.textContent));
+  });
+}
+
+$("next").addEventListener("click", () => {
+  const visible = visibleQuestions();
+  if (current < visible.length - 1) {
+    current++;
+    render();
+  } else {
+    finish();
+  }
+});
+
+$("back").addEventListener("click", () => {
+  if (current > 0) {
+    current--;
+    render();
+  }
+});
+
+function finish() {
+  $("quiz-content").style.display = "none";
+  $("result").style.display = "block";
+  $("progress-fill").style.width = "100%";
+  $("answer-list").innerHTML = "";
+  visibleQuestions().forEach(q => {
+    const answer = answers[q.originalIndex];
+    if (!answer) return;
+    const row = document.createElement("div");
+    row.className = "answer-row";
+    const strong = document.createElement("strong");
+    strong.textContent = q.title;
+    const value = document.createElement("span");
+    value.textContent = Array.isArray(answer) ? answer.join(", ") : answer;
+    row.append(strong, value);
+    $("answer-list").appendChild(row);
+  });
+}
+
+render();
+</script>
+</body>
+</html>
